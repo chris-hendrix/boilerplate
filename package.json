@@ -1,5 +1,5 @@
 {
-  "name": "fantasy-baseball-draft-site",
+  "name": "ping-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chris-hendrix/fantasy-baseball-draft-site.git"
+    "url": "git+https://github.com/chris-hendrix/ping-boilerplate.git"
   },
   "author": "Chris Hendrix",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chris-hendrix/fantasy-baseball-draft-site/issues"
+    "url": "https://github.com/chris-hendrix/ping-boilerplate/issues"
   },
-  "homepage": "https://github.com/chris-hendrix/fantasy-baseball-draft-site#readme",
+  "homepage": "https://github.com/chris-hendrix/ping-boilerplate#readme",
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@typescript-eslint/eslint-plugin": "^5.27.0",

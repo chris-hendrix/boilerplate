@@ -13,10 +13,10 @@ services:
       - db:/var/lib/postgresql/data
   server:
     container_name: server
-    image: fantasy-server
+    image: ping-server
     build:
       context: ./
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     depends_on:
       - db
     ports:

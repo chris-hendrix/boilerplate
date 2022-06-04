@@ -1,1 +1,1 @@
-# fantasy-baseball-draft-site
+# ping-boilerplate
