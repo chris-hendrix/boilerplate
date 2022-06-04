@@ -7,6 +7,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     ports:
       - '5432:5432'
     volumes: 
@@ -23,12 +24,13 @@ services:
       - 3001:3001
     environment:
       NODE_ENV: development
+      DB_HOST: db
       PORT: 3001
     links:
       - db
     volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./src:/usr/app/src
+      # - /usr/app/node_modules
 volumes:
   db:
     driver: local
