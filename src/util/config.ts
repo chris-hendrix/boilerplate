@@ -5,6 +5,8 @@ dotenv.config({ path: __dirname + '/.env' })
 
 export const PORT = process.env.PORT || 3001
 
+export const DB_ENABLE_SSL = process.env.DB_PORT
+
 export const LOCAL_DB: {
   database: string,
   username: string,

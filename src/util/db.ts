@@ -1,4 +1,4 @@
-import { LOCAL_DB } from './config'
+import { LOCAL_DB, DB_ENABLE_SSL } from './config'
 import { Sequelize } from 'sequelize'
 
 const { database, username, password, host, port, dialect } = LOCAL_DB
@@ -6,7 +6,10 @@ const sequelize = new Sequelize(database, username, password, {
   host: host,
   port: port,
   dialect: dialect,
-  dialectOptions: {}
+  ssl: false,
+  dialectOptions: {
+    ssl: DB_ENABLE_SSL && { require: false, rejectUnauthorized: false }
+  }
 })
 
 export const connectToDatabase = async () => {
