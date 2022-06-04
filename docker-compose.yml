@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  db:
+    container_name: db
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+  server:
+    container_name: server
+    image: ping-server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 3001:3001
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+    links:
+      - db
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+volumes:
+  db:
+    driver: local
