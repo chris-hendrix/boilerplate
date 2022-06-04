@@ -3,7 +3,7 @@ import { Dialect } from 'sequelize'
 
 dotenv.config({ path: __dirname + '/.env' })
 
-export const PORT = process.env.PORT || 3000
+export const PORT = process.env.PORT || 3001
 
 export const LOCAL_DB: {
   database: string,
@@ -16,7 +16,7 @@ export const LOCAL_DB: {
   database: 'postgres',
   username: 'postgres',
   password: 'postgres',
-  host: 'localhost',
-  port: Number(process.env.DB_PORT) || 3001,
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
   dialect: 'postgres'
 }

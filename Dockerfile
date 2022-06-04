@@ -1,9 +1,7 @@
 FROM node:17
 
-WORKDIR /usr/src/app
-COPY . .
-
-ENV NODE_ENV=development
-RUN npm ci
-
-CMD ["npm", "run", "server"]
+WORKDIR /usr/app
+COPY package*.json ./
+RUN npm install
+COPY . ./
+CMD ["npm", "run", "dev"]
