@@ -1,10 +1,8 @@
 import express from 'express'
+import { PORT } from './util/config'
 const app = express()
 app.use(express.json())
 
-import 'dotenv/config'
-
-const PORT = process.env.PORT
 
 app.get('/ping', (_req, res) => {
   console.log('someone pinged here')
