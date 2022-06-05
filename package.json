@@ -9,7 +9,9 @@
     "dev": "nodemon -L src/index.ts",
     "lint": "eslint --ext .ts .",
     "up": "docker-compose -f docker-compose.yml up -d",
-    "down": "docker-compose -f docker-compose.yml down"
+    "down": "docker-compose -f docker-compose.yml down",
+    "migrate": "ts-node src/util/migrate.ts",
+    "rollback": "ts-node src/util/rollback.ts"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "homepage": "https://github.com/chris-hendrix/ping-boilerplate#readme",
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/pg": "^8.6.5",
     "@types/sequelize": "^4.28.13",
     "@types/umzug": "^2.3.3",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
