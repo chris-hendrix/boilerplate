@@ -6,8 +6,8 @@ const app = express()
 app.use(express.json())
 
 
-app.get('/ping', (_req, res) => {
-  console.log('someone pinged here')
+app.get('/ping', (req, res) => {
+  console.log(req.socket.remoteAddress || req.headers['x-forwarded-for'])
   res.send('pong')
 })
 
@@ -23,6 +23,5 @@ const start = async () => {
 
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-start()
+start().catch(err => console.log(err))
 
