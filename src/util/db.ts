@@ -42,6 +42,7 @@ export const runMigrations = async () => {
     files: migrations.map((mig) => mig.name),
   })
 }
+
 export const rollbackMigration = async () => {
   await sequelize.authenticate()
   const migrator = new Umzug(migrationConf)
