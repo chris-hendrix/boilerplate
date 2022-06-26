@@ -1,5 +1,5 @@
 import { LOCAL_DB, DB_ENABLE_SSL } from './config'
-import { Sequelize } from 'sequelize'
+import { Sequelize } from 'sequelize-typescript'
 import { Umzug, SequelizeStorage } from 'umzug'
 
 const { database, username, password, host, port, dialect } = LOCAL_DB

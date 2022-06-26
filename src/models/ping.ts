@@ -1,34 +1,36 @@
-import { Model, DataTypes } from 'sequelize'
-import { sequelize } from '../util/db'
+import {
+  Model,
+  Column,
+  Table,
+  ForeignKey,
+  CreatedAt,
+  UpdatedAt
+} from 'sequelize-typescript'
 
-interface PingAttributes {
-  id: number,
-  pingType: string
-  [key: string]: string | number;
-}
+import Address from './address'
 
-class Ping extends Model<PingAttributes> {
-  public id!: number
-  public pingType!: string
-  public readonly createdAt!: Date
-  public readonly updatedAt!: Date
-}
-
-Ping.init({
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  pingType: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-}, {
-  sequelize,
+/* eslint-disable @typescript-eslint/no-unsafe-call*/
+@Table({
   underscored: true,
   timestamps: true,
   modelName: 'ping'
 })
+class Ping extends Model {
+
+  @Column
+  public pingType!: string
+
+  @ForeignKey(() => Address)
+  @Column
+  public addressId?: number
+
+  @CreatedAt
+  @Column
+  public createdAt!: Date
+
+  @UpdatedAt
+  @Column
+  public updatedAt!: Date
+}
 
 export default Ping

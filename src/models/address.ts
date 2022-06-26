@@ -1,32 +1,35 @@
-import { Model, DataTypes } from 'sequelize'
-import { sequelize } from '../util/db'
+import {
+  Model,
+  Column,
+  Table,
+  HasMany,
+  CreatedAt,
+  UpdatedAt
+} from 'sequelize-typescript'
 
-interface AddressAttributes {
-  id: number,
-  remoteAddress: string
-  [key: string]: string | number;
-}
+import Ping from './address'
 
-class Address extends Model<AddressAttributes> {
-  public id!: number
-  public remoteAddress!: string
-}
-
-Address.init({
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  remoteAddress: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-}, {
-  sequelize,
+/* eslint-disable @typescript-eslint/no-unsafe-call*/
+@Table({
   underscored: true,
   timestamps: true,
   modelName: 'ping'
 })
+class Address extends Model<Address> {
+
+  @Column
+  public remoteAddress!: string
+
+  @HasMany(() => Ping)
+  public pings?: Ping[]
+
+  @CreatedAt
+  @Column
+  public createdAt!: Date
+
+  @UpdatedAt
+  @Column
+  public updatedAt!: Date
+}
 
 export default Address
