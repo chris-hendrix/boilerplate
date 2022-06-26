@@ -1,4 +1,7 @@
-
+import Address from './address'
 import Ping from './ping'
 
-export default { Ping }
+Ping.belongsTo(Address)
+Address.hasMany(Ping)
+
+export default { Address, Ping }

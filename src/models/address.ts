@@ -1,26 +1,24 @@
 import { Model, DataTypes } from 'sequelize'
 import { sequelize } from '../util/db'
 
-interface PingAttributes {
+interface AddressAttributes {
   id: number,
-  pingType: string
+  remoteAddress: string
   [key: string]: string | number;
 }
 
-class Ping extends Model<PingAttributes> {
+class Address extends Model<AddressAttributes> {
   public id!: number
-  public pingType!: string
-  public readonly createdAt!: Date
-  public readonly updatedAt!: Date
+  public remoteAddress!: string
 }
 
-Ping.init({
+Address.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  pingType: {
+  remoteAddress: {
     type: DataTypes.TEXT,
     allowNull: false
   },
@@ -31,4 +29,4 @@ Ping.init({
   modelName: 'ping'
 })
 
-export default Ping
+export default Address
