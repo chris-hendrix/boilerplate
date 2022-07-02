@@ -30,7 +30,7 @@ services:
       - db
     volumes:
       - ./src:/usr/app/src
-      # - /usr/app/node_modules
+      - ./node_modules:/usr/app/node_modules
 volumes:
   db:
     driver: local
