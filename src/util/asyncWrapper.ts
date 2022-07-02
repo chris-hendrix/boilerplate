@@ -1,7 +1,8 @@
-import { Request, Response, NextFunction, RequestHandler } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
-declare function asyncWrapper(
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<Response | void>
-): RequestHandler
-
+const asyncWrapper = (fn: (req: Request, res: Response, next: NextFunction) => Promise<Response | void>) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    return fn(req, res, next).catch(next)
+  }
+}
 export default asyncWrapper
