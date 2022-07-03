@@ -30,7 +30,8 @@ services:
       - db
     volumes:
       - ./src:/usr/app/src
-      # - /usr/app/node_modules
+      - ./node_modules:/usr/app/node_modules
+      - ./tsconfig.json:/usr/app/tsconfig.json
 volumes:
   db:
     driver: local
