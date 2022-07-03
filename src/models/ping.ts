@@ -2,6 +2,7 @@ import {
   Model,
   Column,
   Table,
+  BelongsTo,
   ForeignKey,
   CreatedAt,
   UpdatedAt
@@ -10,25 +11,29 @@ import {
 import Address from './address'
 
 @Table({
-  underscored: true,
+  modelName: 'ping',
   timestamps: true,
-  modelName: 'ping'
+  underscored: true
 })
 class Ping extends Model {
 
   @Column
-  public pingType!: string
+  public pingType: string
 
   @ForeignKey(() => Address)
-  public addressId?: number
+  @Column
+  public addressId: number
+
+  @BelongsTo(() => Address)
+  public address: Address
 
   @CreatedAt
   @Column
-  public createdAt!: Date
+  public createdAt: Date
 
   @UpdatedAt
   @Column
-  public updatedAt!: Date
+  public updatedAt: Date
 }
 
 export default Ping

@@ -7,29 +7,28 @@ import {
   UpdatedAt
 } from 'sequelize-typescript'
 
-import Ping from './address'
+import Ping from './ping'
 
-/* eslint-disable @typescript-eslint/no-unsafe-call*/
 @Table({
-  underscored: true,
+  modelName: 'address',
   timestamps: true,
-  modelName: 'ping'
+  underscored: true,
 })
 class Address extends Model<Address> {
 
   @Column
-  public remoteAddress!: string
+  public remoteAddress: string
 
   @HasMany(() => Ping)
-  public pings?: Ping[]
+  public pings: Ping[]
 
   @CreatedAt
   @Column
-  public createdAt!: Date
+  public createdAt: Date
 
   @UpdatedAt
   @Column
-  public updatedAt!: Date
+  public updatedAt: Date
 }
 
 export default Address

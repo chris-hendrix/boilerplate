@@ -1,0 +1,10 @@
+### GET pings
+GET http://localhost:3001/pings
+
+### POST ping
+POST http://localhost:3001/pings
+Content-Type: application/json
+
+{
+    "pingType": "ping"
+}

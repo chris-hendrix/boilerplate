@@ -1,53 +1,30 @@
-import { QueryInterface, DataTypes, literal } from 'sequelize'
+import { QueryInterface, DataTypes } from 'sequelize'
+import { id, createdAt, updatedAt } from '../util/defaultColumns'
 
 module.exports = {
   up: async ({ context: queryInterface }: { context: QueryInterface }) => {
     // create pings table
     await queryInterface.createTable('pings', {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-      },
+      id,
       pingType: {
+        field: 'ping_type',
         type: DataTypes.TEXT,
         allowNull: true
       },
-      createdAt: {
-        type: 'TIMESTAMP',
-        defaultValue: literal('CURRENT_TIMESTAMP'),
-        allowNull: false,
-      },
-      updatedAt: {
-        type: 'TIMESTAMP',
-        defaultValue: literal('CURRENT_TIMESTAMP'),
-        onUpdate: String(literal('CURRENT_TIMESTAMP')),
-        allowNull: false,
-      },
+      createdAt,
+      updatedAt
     })
 
     // create address table (for remote addresses)
     await queryInterface.createTable('addresses', {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-      },
+      id,
       remoteAddress: {
+        field: 'remote_address',
         type: DataTypes.TEXT,
         allowNull: true
       },
-      createdAt: {
-        type: 'TIMESTAMP',
-        defaultValue: literal('CURRENT_TIMESTAMP'),
-        allowNull: false,
-      },
-      updatedAt: {
-        type: 'TIMESTAMP',
-        defaultValue: literal('CURRENT_TIMESTAMP'),
-        onUpdate: String(literal('CURRENT_TIMESTAMP')),
-        allowNull: false,
-      },
+      createdAt,
+      updatedAt
     })
 
     // add ping to address relationship column
