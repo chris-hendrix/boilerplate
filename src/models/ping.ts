@@ -9,7 +9,6 @@ import {
 
 import Address from './address'
 
-/* eslint-disable @typescript-eslint/no-unsafe-call*/
 @Table({
   underscored: true,
   timestamps: true,
@@ -21,7 +20,6 @@ class Ping extends Model {
   public pingType!: string
 
   @ForeignKey(() => Address)
-  @Column
   public addressId?: number
 
   @CreatedAt

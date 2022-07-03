@@ -1,6 +1,6 @@
 import express from 'express'
 import { PORT } from './util/config'
-import { connectToDatabase } from './util/db'
+import { connectToDatabase } from './db'
 
 import pingRouter from './controllers/ping'
 

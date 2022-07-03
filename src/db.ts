@@ -1,4 +1,4 @@
-import { LOCAL_DB, DB_ENABLE_SSL } from './config'
+import { LOCAL_DB, DB_ENABLE_SSL } from './util/config'
 import { Sequelize } from 'sequelize-typescript'
 import { Umzug, SequelizeStorage } from 'umzug'
 
@@ -10,7 +10,8 @@ export const sequelize = new Sequelize(database, username, password, {
   ssl: false,
   dialectOptions: {
     ssl: DB_ENABLE_SSL && { require: false, rejectUnauthorized: false }
-  }
+  },
+  models: [__dirname + '/models']
 })
 
 export const connectToDatabase = async () => {
