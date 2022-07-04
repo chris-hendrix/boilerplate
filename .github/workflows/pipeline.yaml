@@ -16,6 +16,8 @@ env:
 
 jobs:
   postgres:
+    runs-on: ubuntu-latest
+    container: node:latest
     services:
       postgres:
         image: postgres:latest
@@ -44,7 +46,6 @@ jobs:
   server:
     needs: postgres
     runs-on: ubuntu-latest
-    container: node:latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
