@@ -1,8 +1,8 @@
-import { LOCAL_DB, DB_ENABLE_SSL } from './util/config'
+import { getDb, DB_ENABLE_SSL } from './util/config'
 import { Sequelize } from 'sequelize-typescript'
 import { Umzug, SequelizeStorage } from 'umzug'
 
-const { database, username, password, host, port, dialect } = LOCAL_DB
+const { database, username, password, host, port, dialect } = getDb()
 export const sequelize = new Sequelize(database, username, password, {
   host: host,
   port: port,
