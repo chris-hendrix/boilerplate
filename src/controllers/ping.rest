@@ -1,5 +1,5 @@
 ### GET pings
-GET http://localhost:3001/pings
+GET http://localhost:3001/api/pings
 
 ### POST ping
 POST http://localhost:3001/pings

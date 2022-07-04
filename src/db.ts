@@ -1,15 +1,15 @@
-import { getDb, DB_ENABLE_SSL } from './util/config'
+import { db } from './util/config'
 import { Sequelize } from 'sequelize-typescript'
 import { Umzug, SequelizeStorage } from 'umzug'
 
-const { database, username, password, host, port, dialect } = getDb()
+const { database, username, password, host, port, dialect, enableSsl } = db
 export const sequelize = new Sequelize(database, username, password, {
-  host: host,
-  port: port,
-  dialect: dialect,
+  host,
+  port,
+  dialect,
   ssl: false,
   dialectOptions: {
-    ssl: DB_ENABLE_SSL && { require: false, rejectUnauthorized: false }
+    ssl: enableSsl && { require: false, rejectUnauthorized: false }
   },
   models: [__dirname + '/models']
 })
@@ -17,10 +17,12 @@ export const sequelize = new Sequelize(database, username, password, {
 export const connectToDatabase = async () => {
   try {
     console.log(`connecting to db: host=${host}, port=${port}`)
+    console.log({ sequelize })
     await sequelize.authenticate()
     await runMigrations()
     console.log('connected to the database')
   } catch (error) {
+    console.log({ error })
     console.log('failed to connect to the database')
     return process.exit(1)
   }
