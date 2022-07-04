@@ -32,7 +32,7 @@ const TEST_DB: PostgresDb = {
   username: 'testgres',
   password: 'testgres',
   host: process.env.DB_HOST || 'localhost',
-  port: 5431,
+  port: 5433,
   dialect: 'postgres'
 }
 
@@ -42,6 +42,6 @@ export const getDb = (): PostgresDb => {
 }
 
 export const getPort = () => {
-  if (NODE_ENV === 'test') return PORT - 1
+  if (NODE_ENV === 'test') return PORT + 1
   return PORT
 }

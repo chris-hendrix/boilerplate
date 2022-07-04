@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "dev": "nodemon -L src/index.ts",
     "lint": "eslint --ext .ts .",
-    "test": "jest",
+    "test": "NODE_ENV=test jest --verbose --runInBand",
     "up": "docker-compose -f docker-compose.yml up -d",
     "down": "docker-compose -f docker-compose.yml down",
     "migrate": "ts-node src/util/migrate.ts",
