@@ -1,5 +1,5 @@
 import app from './app'
-import { port, nodeEnv } from './util/config'
+import { port, nodeEnv } from './config'
 import { connectToDatabase } from './db'
 
 export const start = async () => {
@@ -13,4 +13,4 @@ export const start = async () => {
   }
 }
 
-start().catch(err => console.log(err))
+start().catch(error => console.log(error))

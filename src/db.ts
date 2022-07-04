@@ -1,4 +1,4 @@
-import { db } from './util/config'
+import { db } from './config'
 import { Sequelize } from 'sequelize-typescript'
 import { Umzug, SequelizeStorage } from 'umzug'
 
