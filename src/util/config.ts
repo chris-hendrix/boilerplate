@@ -9,13 +9,6 @@ const DB_PORT = Number(process.env.DB_PORT || 5432)
 const DB_HOST = process.env.DB_HOST || 'localhost'
 const DB_ENABLE_SSL = Boolean(process.env.DB_ENABLE_SSL)
 
-// const TEST_PORT = Number(process.env.TEST || PORT + 1)
-// const TEST_DB_PORT = Number(process.env.TEST_DB_PORT || DB_PORT)
-
-const test = NODE_ENV === 'test'
-
-console.log({ NODE_ENV, test })
-
 type PostgresDb = {
   database: string,
   username: string,
@@ -26,6 +19,10 @@ type PostgresDb = {
   enableSsl: boolean
 }
 
+export const port = PORT
+
+export const nodeEnv = NODE_ENV
+
 export const db: PostgresDb = {
   database: 'postgres',
   username: 'postgres',
@@ -35,6 +32,4 @@ export const db: PostgresDb = {
   dialect: 'postgres',
   enableSsl: DB_ENABLE_SSL
 }
-
-export const port = PORT
 
