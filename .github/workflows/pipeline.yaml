@@ -15,7 +15,7 @@ env:
   DB_HOST: ${{ secrets.DB_HOST }}
 
 jobs:
-  postgres:
+  pipeline:
     runs-on: ubuntu-latest
     container: node:latest
     services:
@@ -33,6 +33,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
+
       - name: Install PostgreSQL client
         run: |
           apt-get update
@@ -42,11 +43,7 @@ jobs:
         run: psql -h postgres -d postgres -U postgres -c 'SELECT 1;'
         env:
           PGPASSWORD: postgres
-
-  server:
-    needs: postgres
-    runs-on: ubuntu-latest
-    steps:
+  
       - name: Check out repository code
         uses: actions/checkout@v2
 
