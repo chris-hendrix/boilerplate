@@ -58,9 +58,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Connect to PostgreSQL
-        run: npm run server
+      - name: Run unit tests
+        run: npm run test
         env:
+          NODE_ENV: test
           PORT: 3001
           DB_HOST: postgres
           DB_PORT: 5432
