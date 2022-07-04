@@ -6,6 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "dev": "nodemon -L src/index.ts",
+    "server": "ts-node src/index.ts",
     "dev:test": "NODE_ENV=test && nodemon -L src/index.ts",
     "lint": "eslint --ext .ts .",
     "up": "docker-compose -f docker-compose.yml up -d",
