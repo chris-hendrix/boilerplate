@@ -1,3 +1,6 @@
+### GET server
+GET http://localhost:3010/ping
+
 ### GET pings
 GET http://localhost:3001/api/pings
 

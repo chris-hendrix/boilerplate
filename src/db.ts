@@ -17,7 +17,6 @@ export const sequelize = new Sequelize(database, username, password, {
 export const connectToDatabase = async () => {
   try {
     console.log(`connecting to db: host=${host}, port=${port}`)
-    console.log({ sequelize })
     await sequelize.authenticate()
     await runMigrations()
     console.log('connected to the database')

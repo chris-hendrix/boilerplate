@@ -5,8 +5,8 @@ import request from 'supertest'
 
 describe('GET / - a simple api endpoint', () => {
   it('Hello API Request', async () => {
-    const result = await request(app).get('/')
-    expect(result.text).toEqual('pong')
+    const result = await request(app).get('/ping')
     expect(result.statusCode).toEqual(200)
+    expect(result.text).toEqual('pong')
   })
 })
