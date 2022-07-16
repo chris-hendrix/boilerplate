@@ -4,8 +4,7 @@ import pingRouter from './controllers/ping'
 const app = express()
 app.use(express.json())
 
-app.get('/ping', (req, res) => {
-  console.log(req.socket.remoteAddress || req.headers['x-forwarded-for'])
+app.get('/ping', (_req, res) => {
   res.send('pong')
 })
 
