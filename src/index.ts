@@ -1,16 +1,17 @@
 import app from './app'
-import { port, nodeEnv } from './config'
+import { port, serverInfo } from './config'
 import { connectToDatabase } from './db'
+import logger from './util/logger'
 
 export const start = async () => {
   try {
     await connectToDatabase()
     app.listen(port, () => {
-      console.log(`${nodeEnv} server running on port ${port}`)
+      logger.info(`Server running: ${serverInfo}`)
     })
   } catch (error) {
-    console.log(error)
+    logger.error(error)
   }
 }
 
-start().catch(error => console.log(error))
+start().catch(error => logger.error(error))

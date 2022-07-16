@@ -1,6 +1,7 @@
-import { db } from './config'
+import { db, dbInfo } from './config'
 import { Sequelize } from 'sequelize-typescript'
 import { Umzug, SequelizeStorage } from 'umzug'
+import logger from './util/logger'
 
 const { database, username, password, host, port, dialect, enableSsl } = db
 export const sequelize = new Sequelize(database, username, password, {
@@ -16,13 +17,13 @@ export const sequelize = new Sequelize(database, username, password, {
 
 export const connectToDatabase = async () => {
   try {
-    console.log(`connecting to db: host=${host}, port=${port}`)
+    logger.info(`connecting to db: ${dbInfo}`)
     await sequelize.authenticate()
     await runMigrations()
-    console.log('connected to the database')
+    logger.info(`successfully connected to db: ${dbInfo}`)
   } catch (error) {
-    console.log({ error })
-    console.log('failed to connect to the database')
+    logger.error(`failed to connect to the database ${dbInfo}`)
+    logger.error(error)
     return process.exit(1)
   }
   return null
@@ -34,13 +35,13 @@ const migrationConf = {
   },
   storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),
   context: sequelize.getQueryInterface(),
-  logger: console,
+  logger,
 }
 
 export const runMigrations = async () => {
   const migrator = new Umzug(migrationConf)
   const migrations = await migrator.up()
-  console.log('Migrations up to date', {
+  logger.info('Migrations up to date', {
     files: migrations.map((mig) => mig.name),
   })
 }
