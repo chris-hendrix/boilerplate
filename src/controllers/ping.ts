@@ -20,4 +20,10 @@ pingRouter.post('/', (async (req, res) => {
   res.status(201).json(ping)
 }) as RequestHandler)
 
+pingRouter.delete('/:id', (async (req, res) => {
+  const ping = await Ping.findByPk(req.params.id)
+  await ping?.destroy()
+  res.status(200).json(ping)
+}) as RequestHandler)
+
 export default pingRouter
