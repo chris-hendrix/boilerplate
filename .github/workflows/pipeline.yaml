@@ -60,6 +60,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Start test containers
+        run: npm run up:test
+
       - name: Run unit tests
         run: npm run test
         env:
