@@ -1,15 +1,18 @@
 import app from '../app'
 import request from 'supertest'
 
-import { start } from '../'
+import { connectToDatabase, rollbackMigration } from '../db'
 
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+describe('DATABASE', () => {
 
-start().catch(_error => null)
+  it('Rollback migrations', async () => await rollbackMigration())
+  it('Connect and migrate', async () => await connectToDatabase())
 
-describe('GET PINGS - ', () => {
+})
 
-  it('Make request to API', async () => {
+describe('PINGS', () => {
+
+  it('Check server status', async () => {
     const result = await request(app).get('/ping')
     expect(result.statusCode).toEqual(200)
     expect(result.text).toEqual('pong')
@@ -23,6 +26,12 @@ describe('GET PINGS - ', () => {
       .send(ping))
     expect(result.statusCode).toEqual(201)
     expect(result.body.pingType).toEqual('pong')
+  })
+
+  it('Get all pings', async () => {
+    const result = await request(app).get('/api/pings')
+    expect(result.statusCode).toEqual(200)
+    expect(result.body.length).toEqual(1)
   })
 
 })
