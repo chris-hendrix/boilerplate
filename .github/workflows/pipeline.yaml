@@ -60,13 +60,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Start test containers
-        run: npm run up:test
-
       - name: Run unit tests
         run: npm run test
         env:
           NODE_ENV: test
           DB_HOST: postgres
-          TEST_PORT: 3010
-          TEST_DB_PORT: 5433
+          TEST_PORT: 3001
+          TEST_DB_PORT: 5432
