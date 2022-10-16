@@ -41,10 +41,10 @@ jobs:
           apt-get update
           apt-get install --yes postgresql-client
 
-      - name: Query database
-        run: psql -h postgres -d postgres -U postgres -c 'SELECT 1;'
-        env:
-          PGPASSWORD: postgres
+      # - name: Query database
+      #   run: psql -h localhost -d postgres -U postgres -c 'SELECT 1;'
+        # env:
+        #   PGPASSWORD: postgres
   
       - name: Check out repository code
         uses: actions/checkout@v3
