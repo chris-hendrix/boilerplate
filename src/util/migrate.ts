@@ -1,3 +1,4 @@
 import { runMigrations } from '../db'
+import logger from './logger'
 
-runMigrations().catch(err => console.log(err))
+runMigrations().catch(error => logger.error(error))

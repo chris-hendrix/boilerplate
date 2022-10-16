@@ -1,31 +1,17 @@
-import express from 'express'
-import { PORT } from './util/config'
+import app from './app'
+import { nodeEnv, port, serverInfo } from './config'
 import { connectToDatabase } from './db'
+import logger from './util/logger'
 
-import pingRouter from './controllers/ping'
-
-const app = express()
-app.use(express.json())
-
-
-app.get('/ping', (req, res) => {
-  console.log(req.socket.remoteAddress || req.headers['x-forwarded-for'])
-  res.send('pong')
-})
-
-app.use('/pings', pingRouter)
-
-const start = async () => {
+export const start = async () => {
   try {
     await connectToDatabase()
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`)
+    nodeEnv !== 'test' && app.listen(port, () => {
+      logger.info(`Server running: ${serverInfo}`)
     })
   } catch (error) {
-    console.log(error)
+    logger.error(error)
   }
-
 }
 
-start().catch(err => console.log(err))
-
+start().catch(error => logger.error(error))

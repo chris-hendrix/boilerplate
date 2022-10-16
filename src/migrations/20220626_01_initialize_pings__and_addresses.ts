@@ -36,7 +36,7 @@ module.exports = {
 
   },
   down: async ({ context: queryInterface }: { context: QueryInterface }) => {
-    await queryInterface.dropTable('addresses')
     await queryInterface.dropTable('pings')
+    await queryInterface.dropTable('addresses')
   },
 }

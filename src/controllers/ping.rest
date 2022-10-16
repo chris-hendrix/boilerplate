@@ -1,8 +1,11 @@
+### GET server
+GET http://localhost:3010/ping
+
 ### GET pings
-GET http://localhost:3001/pings
+GET http://localhost:3001/api/pings
 
 ### POST ping
-POST http://localhost:3001/pings
+POST http://localhost:3001/api/pings
 Content-Type: application/json
 
 {

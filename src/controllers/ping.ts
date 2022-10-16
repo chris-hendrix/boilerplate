@@ -17,6 +17,12 @@ pingRouter.post('/', (async (req, res) => {
   const remoteAddress = parseString(req.headers['x-forwarded-for'] || req.socket.remoteAddress)
   const [address] = await Address.findOrCreate({ where: { remoteAddress } })
   const ping = await Ping.create({ pingType, addressId: Number(address.id) })
+  res.status(201).json(ping)
+}) as RequestHandler)
+
+pingRouter.delete('/:id', (async (req, res) => {
+  const ping = await Ping.findByPk(req.params.id)
+  await ping?.destroy()
   res.status(200).json(ping)
 }) as RequestHandler)
 

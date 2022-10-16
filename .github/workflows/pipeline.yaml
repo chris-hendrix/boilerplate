@@ -1,0 +1,64 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - '**'
+    pull_request:
+      branches: [main]
+      types: [opened, synchronize]
+
+env:
+  PORT: ${{ secrets.PORT }}
+  DB_PORT: ${{ secrets.DB_PORT }}
+  DB_HOST: ${{ secrets.DB_HOST }}
+  TEST_PORT: ${{ secrets.TEST_PORT }}
+  TEST_DB_PORT: ${{ secrets.TEST_DB_PORT }}
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    container: node:latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+
+      - name: Install PostgreSQL client
+        run: |
+          apt-get update
+          apt-get install --yes postgresql-client
+  
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+        env:
+          NODE_ENV: test
+          DB_HOST: postgres
+          TEST_PORT: 3001
+          TEST_DB_PORT: 5432
