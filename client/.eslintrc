@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "../.eslintrc",
+        "plugin:react/recommended"
+    ],
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "ecmaFeatures": {"jsx": true}
+    },
+    "plugins": [ "react"],
+    "rules": {}
+}

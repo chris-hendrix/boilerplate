@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {
   decrement,
   increment,
@@ -8,20 +8,19 @@ import {
   incrementAsync,
   incrementIfOdd,
   selectCount,
-} from './counterSlice';
+} from './counterSlice'
 
 export function Counter() {
-  const count = useAppSelector(selectCount);
-  const dispatch = useAppDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  const count = useAppSelector(selectCount)
+  const dispatch = useAppDispatch()
+  const [incrementAmount, setIncrementAmount] = useState('2')
 
-  const incrementValue = Number(incrementAmount) || 0;
+  const incrementValue = Number(incrementAmount) || 0
 
   return (
     <div>
       <div>
         <button
-
           aria-label="Decrement value"
           onClick={() => dispatch(decrement())}
         >
@@ -47,6 +46,7 @@ export function Counter() {
           Add Amount
         </button>
         <button
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async
@@ -58,5 +58,5 @@ export function Counter() {
         </button>
       </div>
     </div>
-  );
+  )
 }
