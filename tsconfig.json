@@ -14,5 +14,5 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false
   },
-  "include": ["client/src/**/*"]
+  "include": ["src/**/*"]
 }

@@ -7,21 +7,19 @@ const App = () => {
       <header className="App-header">
         <Counter />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <code>src/App.tsx</code> and save to reload. sfd as
         </p>
         <span>
           <span>Learn </span>
           <a
-            className="App-link"
             href="https://redux-toolkit.js.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Redux Toolkit
           </a>
-          ,<span> and </span>
+          <span> and </span>
           <a
-            className="App-link"
             href="https://react-redux.js.org/"
             target="_blank"
             rel="noopener noreferrer"
