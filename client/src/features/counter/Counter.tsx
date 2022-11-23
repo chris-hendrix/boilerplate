@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { Box, Button, TextField } from '@mui/material'
+
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {
   decrement,
@@ -10,7 +12,7 @@ import {
   selectCount,
 } from './counterSlice'
 
-export function Counter() {
+const Counter = ({ ...rest }) => {
   const count = useAppSelector(selectCount)
   const dispatch = useAppDispatch()
   const [incrementAmount, setIncrementAmount] = useState('2')
@@ -18,45 +20,36 @@ export function Counter() {
   const incrementValue = Number(incrementAmount) || 0
 
   return (
-    <div>
-      <div>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
+    <Box typography="body1" {...rest}>
+      <Box>
+        <Button onClick={() => dispatch(decrement())}>
           -
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
+        </Button>
+        {count}
+        <Button onClick={() => dispatch(increment())}>
           +
-        </button>
-      </div>
-      <div >
-        <input
-          aria-label="Set increment amount"
+        </Button>
+      </Box>
+      <Box >
+        <TextField
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
-        <button
-          onClick={() => dispatch(incrementByAmount(incrementValue))}
-        >
+        <Button onClick={() => dispatch(incrementByAmount(incrementValue))}>
           Add Amount
-        </button>
-        <button
+        </Button>
+        <Button
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async
-        </button>
-        <button
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
-        >
+        </Button>
+        <Button onClick={() => dispatch(incrementIfOdd(incrementValue))}>
           Add If Odd
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Box>
+    </Box>
   )
 }
+
+export default Counter

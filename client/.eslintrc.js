@@ -1,4 +1,4 @@
-{
+module.exports = {
     "extends": [
         "../.eslintrc",
         "plugin:react/recommended"
@@ -6,9 +6,10 @@
     "root": true,
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "./client/tsconfig.json",
-        "ecmaFeatures": {"jsx": true}
+        "project": "./tsconfig.json",
+        "tsconfigRootDir": __dirname,
+        "ecmaFeatures": { "jsx": true }
     },
-    "plugins": [ "react"],
+    "plugins": ["react"],
     "rules": {}
 }
