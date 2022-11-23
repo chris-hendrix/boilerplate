@@ -29,7 +29,7 @@ A non-exhaustive list of technologies in this project:
 3. Clone this repo
 4. Run the following command in the root directory
 ```
-npm install && cd client && npm install
+npm run install:all
 ```
 ### Start
 The following command will containerize, build, and start the database, backend, and frontend

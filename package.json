@@ -4,6 +4,9 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
+    "install:client": "npm install ./client --prefix ./client",
+    "install:all": "npm install && npm install:client",
+    "start": "npm start ./client --prefix ./client",
     "tsc": "tsc",
     "dev": "nodemon -L src/index.ts",
     "server": "ts-node src/index.ts",
