@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "rootDir": "./src",
     "outDir": "./build/",
     "module": "commonjs",
     "strict": true,
@@ -14,5 +13,6 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false
   },
-  "include": ["./src/**/*"]
+  "include": ["src"],
+  "exclude": ["client"]
 }

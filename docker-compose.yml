@@ -32,21 +32,6 @@ services:
       - ./src:/usr/app/src
       - ./node_modules:/usr/app/node_modules
       - ./tsconfig.json:/usr/app/tsconfig.json
-  client:
-    container_name: client
-    image: ping-client
-    build:
-      context: ./client/
-      dockerfile: Dockerfile
-    depends_on:
-      - server
-    volumes:
-      - ./client/:/usr/src/app/client
-      - ./client/node_modules:/usr/app/client/node_modules
-      - ./client/tsconfig.json:/usr/app/client/tsconfig.json
-      - ./.eslintrc:/usr/app/.eslintrc
-    ports:
-      - 3000:3000
 volumes:
   db:
     driver: local
