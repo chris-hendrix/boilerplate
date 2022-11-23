@@ -1,15 +1,15 @@
 module.exports = {
-    "extends": [
-        "../.eslintrc",
-        "plugin:react/recommended"
+    'extends': [
+        '../.eslintrc',
+        'plugin:react/recommended'
     ],
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": "./tsconfig.json",
-        "tsconfigRootDir": __dirname,
-        "ecmaFeatures": { "jsx": true }
+    'root': true,
+    'parser': '@typescript-eslint/parser',
+    'parserOptions': {
+        'project': './tsconfig.json',
+        'tsconfigRootDir': __dirname,
+        'ecmaFeatures': { 'jsx': true }
     },
-    "plugins": ["react"],
-    "rules": {}
+    'plugins': ['react'],
+    'rules': {}
 }

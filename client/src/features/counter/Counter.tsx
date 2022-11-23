@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, Chip, IconButton, TextField } from '@mui/material'
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {
@@ -22,19 +22,22 @@ const Counter = ({ ...rest }) => {
   return (
     <Box typography="body1" {...rest}>
       <Box>
-        <Button onClick={() => dispatch(decrement())}>
+        <IconButton onClick={() => dispatch(decrement())}>
           -
-        </Button>
-        {count}
-        <Button onClick={() => dispatch(increment())}>
+        </IconButton>
+        <Chip label={count} />
+        <IconButton onClick={() => dispatch(increment())}>
           +
-        </Button>
+        </IconButton>
       </Box>
-      <Box >
+      <>
         <TextField
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
+          sx={{ width: '100px' }}
         />
+      </>
+      <Box >
         <Button onClick={() => dispatch(incrementByAmount(incrementValue))}>
           Add Amount
         </Button>

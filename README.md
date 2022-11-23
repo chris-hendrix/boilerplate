@@ -16,6 +16,7 @@ A non-exhaustive list of technologies in this project:
 - [Express](https://expressjs.com/)
 - [Github Actions](https://github.com/features/actions)
 - [Jest](https://jestjs.io/)
+- [Material UI](https://mui.com/)
 - [Node](https://nodejs.org/en/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [React](https://reactjs.org/)
@@ -34,5 +35,5 @@ npm run install:all
 ### Start
 The following command will containerize, build, and start the database, backend, and frontend
 ```
-npm run up
+npm run up && npm start
 ```
