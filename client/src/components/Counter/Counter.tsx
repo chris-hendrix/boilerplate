@@ -10,7 +10,7 @@ import {
   TextField
 } from '@mui/material'
 
-import { useAppSelector, useAppDispatch } from '../../hooks/store'
+import { useAppSelector, useAppDispatch } from 'hooks'
 import {
   decrement,
   increment,
@@ -18,7 +18,7 @@ import {
   incrementAsync,
   incrementIfOdd,
   selectCount,
-} from '../../store/counter'
+} from 'store/counter'
 
 const Counter = ({ ...rest }) => {
   const count = useAppSelector(selectCount)
@@ -32,7 +32,7 @@ const Counter = ({ ...rest }) => {
   return (
     <Card {...rest}>
       <CardContent>
-        <Box sx={{ ...boxSx }}>
+        <Box sx={{ ...boxSx, mb: 2 }}>
           <IconButton onClick={() => dispatch(decrement())}>-</IconButton>
           <Box typography="h2">{count}</Box>
           <IconButton onClick={() => dispatch(increment())}>+</IconButton>
@@ -43,6 +43,9 @@ const Counter = ({ ...rest }) => {
             size="small"
             onChange={(e) => setIncrementAmount(e.target.value)}
             sx={{ width: '100px' }}
+            InputProps={{
+              inputProps: { style: { textAlign: 'center' }, }
+            }}
           />
         </Box>
       </CardContent>

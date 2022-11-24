@@ -2,7 +2,7 @@ import React from 'react'
 import theme from './theme/theme'
 import { ThemeProvider } from '@mui/material/styles'
 import { Box, Link } from '@mui/material'
-import { Counter } from './components'
+import { Counter } from 'components'
 
 const App = () => {
   return (
