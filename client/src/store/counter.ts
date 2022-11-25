@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState, AppThunk } from './store'
+import { RootState, AppThunk } from 'store'
 
 // A mock function to mimic making an async request for data
 const fetchCount = (amount = 1) => {
