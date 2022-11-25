@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React from 'react'
 import {
   Card,
   CardContent,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -9,8 +11,10 @@ import {
   TableRow,
 } from '@mui/material'
 
+import { Delete } from '@mui/icons-material'
+
 import { useAppSelector, useAppDispatch } from 'hooks'
-import { getPings, selectPings, selectPing, Ping } from 'store/ping'
+import { deletePing, getPings, selectPings, selectPing, Ping } from 'store/ping'
 
 const PingTable = ({ ...rest }) => {
   const ping = useAppSelector(selectPing) || undefined
@@ -19,7 +23,7 @@ const PingTable = ({ ...rest }) => {
   React.useEffect(() => void dispatch(getPings()), [ping])
 
   const renderHeaderRow = () => {
-    const headers = ['Message', 'Address']
+    const headers = ['Message', 'Address', '']
     return <TableRow>{headers.map(h => <TableCell key={h}>{h}</TableCell>)}</TableRow>
   }
 
@@ -28,6 +32,11 @@ const PingTable = ({ ...rest }) => {
       <TableRow key={ping.id}>
         <TableCell>{ping.message}</TableCell>
         <TableCell>{ping.address?.remoteAddress}</TableCell>
+        <TableCell>
+          <IconButton onClick={() => dispatch(deletePing(ping))} color="error" size="small" >
+            <Delete />
+          </IconButton>
+        </TableCell>
       </TableRow>)
   }
 

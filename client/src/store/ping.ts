@@ -51,6 +51,20 @@ export const getPings = createAsyncThunk(
   }
 )
 
+export const deletePing = createAsyncThunk(
+  'ping/deletePing',
+  async (ping: Ping) => {
+    try {
+      await fetch(`${baseApiUrl}/pings/${ping.id}`, {
+        method: 'DELETE',
+      })
+      return ping
+    } catch (error) {
+      error instanceof Error && alert(error.message)
+    }
+  }
+)
+
 
 export interface PingState {
   ping: Ping | undefined,
@@ -76,6 +90,10 @@ export const pingSlice = createSlice({
     builder.addCase(getPings.fulfilled, (state, action) => {
       state.status = 'idle'
       state.pings = action.payload
+    })
+    builder.addCase(deletePing.fulfilled, (state, action) => {
+      state.status = 'idle'
+      state.ping = action.payload
     })
   }
 })
