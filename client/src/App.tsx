@@ -2,7 +2,7 @@ import React from 'react'
 import theme from './theme/theme'
 import { ThemeProvider } from '@mui/material/styles'
 import { Box } from '@mui/material'
-import { Counter, PingCreator } from 'components'
+import { Counter, PingCreator, PingTable } from 'components'
 
 const App = () => {
   return (
@@ -10,19 +10,15 @@ const App = () => {
       <Box
         className="App"
         typography="body1"
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          height: '100vh',
-          bgcolor: 'grey.700'
-        }}
+        sx={{ display: 'flex', justifyContent: 'center', height: '100vh', bgcolor: 'grey.700' }}
       >
         <Box
           className="layout"
           sx={{ bgcolor: 'grey.300', minWidth: '50%', p: 4 }}
         >
           <Counter sx={{ mb: 2 }} />
-          <PingCreator />
+          <PingCreator sx={{ mb: 2 }} />
+          <PingTable />
         </Box>
       </Box>
     </ThemeProvider>

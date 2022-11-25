@@ -1,8 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { baseApiUrl } from 'config'
+import { RootState } from 'store'
 
 export interface Ping {
-  message: string
+  message: string,
+  id?: number,
+  address?: string
 }
 
 const parsePing = (obj: unknown): Ping => {
@@ -12,8 +15,14 @@ const parsePing = (obj: unknown): Ping => {
   return obj
 }
 
+const parsePings = (arr: unknown): Array<Ping> => {
+  console.log({ arr })
+  if (!Array.isArray(arr)) throw new Error('Invalid list')
+  return arr.map(obj => parsePing(obj))
+}
+
 export const createPing = createAsyncThunk(
-  'ping/create',
+  'ping/createPing',
   async (ping: Ping) => {
     try {
       const resp = await fetch(`${baseApiUrl}/pings`, {
@@ -28,10 +37,22 @@ export const createPing = createAsyncThunk(
   }
 )
 
+export const getPings = createAsyncThunk(
+  'ping/getPings',
+  async () => {
+    try {
+      const resp = await fetch(`${baseApiUrl}/pings`)
+      return parsePings(await resp.json())
+    } catch (error) {
+      error instanceof Error && alert(error.message)
+    }
+  }
+)
+
 
 export interface PingState {
   ping: Ping | undefined,
-  pings: Array<Ping>,
+  pings: Array<Ping> | undefined,
   status: 'idle' | 'loading' | 'failed'
 }
 
@@ -50,7 +71,13 @@ export const pingSlice = createSlice({
       state.status = 'idle'
       state.ping = action.payload
     })
+    builder.addCase(getPings.fulfilled, (state, action) => {
+      state.status = 'idle'
+      state.pings = action.payload
+    })
   }
 })
+
+export const selectPings = (state: RootState) => state.ping.pings
 
 export default pingSlice.reducer
