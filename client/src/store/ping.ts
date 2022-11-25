@@ -2,10 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { baseApiUrl } from 'config'
 import { RootState } from 'store'
 
+export interface Address {
+  remoteAddress: string
+}
 export interface Ping {
   message: string,
   id?: number,
-  address?: string
+  address?: Address
 }
 
 const parsePing = (obj: unknown): Ping => {
@@ -16,7 +19,6 @@ const parsePing = (obj: unknown): Ping => {
 }
 
 const parsePings = (arr: unknown): Array<Ping> => {
-  console.log({ arr })
   if (!Array.isArray(arr)) throw new Error('Invalid list')
   return arr.map(obj => parsePing(obj))
 }
@@ -78,6 +80,7 @@ export const pingSlice = createSlice({
   }
 })
 
+export const selectPing = (state: RootState) => state.ping.ping
 export const selectPings = (state: RootState) => state.ping.pings
 
 export default pingSlice.reducer

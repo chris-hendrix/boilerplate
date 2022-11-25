@@ -8,7 +8,7 @@ import Address from '../models/address'
 const pingRouter = express.Router()
 
 pingRouter.get('/', (async (_req, res) => {
-  const pings = await Ping.findAll({})
+  const pings = await Ping.findAll({ include: { model: Address } })
   res.status(200).json(pings)
 }) as RequestHandler)
 

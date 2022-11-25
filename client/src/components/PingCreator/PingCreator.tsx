@@ -27,7 +27,7 @@ const PingCreator = ({ ...rest }) => {
         />
       </CardContent>
       <CardActions>
-        <Button onClick={() => dispatch(createPing({ message }))}>
+        <Button onClick={() => void dispatch(createPing({ message })).then(() => setMessage(''))}>
           Submit Message
         </Button>
       </CardActions>

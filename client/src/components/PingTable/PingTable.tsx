@@ -10,12 +10,13 @@ import {
 } from '@mui/material'
 
 import { useAppSelector, useAppDispatch } from 'hooks'
-import { getPings, selectPings, Ping } from 'store/ping'
+import { getPings, selectPings, selectPing, Ping } from 'store/ping'
 
 const PingTable = ({ ...rest }) => {
+  const ping = useAppSelector(selectPing) || undefined
   const pings = useAppSelector(selectPings) || []
   const dispatch = useAppDispatch()
-  React.useEffect(() => void dispatch(getPings()), [])
+  React.useEffect(() => void dispatch(getPings()), [ping])
 
   const renderHeaderRow = () => {
     const headers = ['Message', 'Address']
@@ -26,7 +27,7 @@ const PingTable = ({ ...rest }) => {
     return (
       <TableRow key={ping.id}>
         <TableCell>{ping.message}</TableCell>
-        <TableCell>{ping.address}</TableCell>
+        <TableCell>{ping.address?.remoteAddress}</TableCell>
       </TableRow>)
   }
 
