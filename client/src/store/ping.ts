@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { baseApiUrl } from 'config'
 
 export interface Ping {
-  pingType: string
+  message: string
 }
 
 const parsePing = (obj: unknown): Ping => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const isPing = (obj: any): obj is Ping => 'pingType' in obj
+  const isPing = (obj: any): obj is Ping => 'message' in obj
   if (!isPing(obj)) throw new Error('Invalid ping format')
   return obj
 }

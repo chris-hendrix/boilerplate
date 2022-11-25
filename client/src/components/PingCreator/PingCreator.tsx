@@ -15,20 +15,20 @@ import { createPing } from 'store/ping'
 
 const PingCreator = ({ ...rest }) => {
   const dispatch = useAppDispatch()
-  const [pingType, setPingType] = React.useState('')
+  const [message, setMessage] = React.useState('')
   return (
     <Card {...rest}>
       <CardContent>
         <TextField
-          value={pingType}
+          value={message}
           size="small"
-          onChange={(e) => setPingType(e.target.value)}
+          onChange={(e) => setMessage(e.target.value)}
           sx={{ width: '100%' }}
         />
       </CardContent>
       <CardActions>
-        <Button onClick={() => dispatch(createPing({ pingType }))}>
-          Submit Ping Message
+        <Button onClick={() => dispatch(createPing({ message }))}>
+          Submit Message
         </Button>
       </CardActions>
     </Card >

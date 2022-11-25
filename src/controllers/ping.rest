@@ -9,5 +9,5 @@ POST http://localhost:3001/api/pings
 Content-Type: application/json
 
 {
-    "pingType": "ping"
+    "message": "ping"
 }
