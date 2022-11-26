@@ -1,7 +1,7 @@
 import app from './app'
 import { nodeEnv, port, serverInfo } from './config'
 import { connectToDatabase } from './db'
-import logger from './util/logger'
+import logger from './utils/logger'
 
 export const start = async () => {
   try {

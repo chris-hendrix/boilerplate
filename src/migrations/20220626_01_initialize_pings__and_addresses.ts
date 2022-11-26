@@ -1,5 +1,5 @@
 import { QueryInterface, DataTypes } from 'sequelize'
-import { id, createdAt, updatedAt } from '../util/defaultColumns'
+import { id, createdAt, updatedAt } from '../utils/defaultColumns'
 
 module.exports = {
   up: async ({ context: queryInterface }: { context: QueryInterface }) => {
