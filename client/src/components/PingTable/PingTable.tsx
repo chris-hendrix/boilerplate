@@ -14,7 +14,8 @@ import {
 import { Delete } from '@mui/icons-material'
 
 import { useAppSelector, useAppDispatch } from 'hooks'
-import { deletePing, getPings, selectPings, selectPing, Ping } from 'store/ping'
+import { Ping } from 'types/ping'
+import { deletePing, getPings, selectPings, selectPing } from 'store/ping'
 
 const PingTable = ({ ...rest }) => {
   const ping = useAppSelector(selectPing) || undefined

@@ -1,72 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { baseApiUrl } from 'config'
 import { RootState } from 'store'
+import { Ping } from 'types/ping'
+import { getAll, createOne, deleteOne } from 'api/ping'
 
-export interface Address {
-  remoteAddress: string
-}
-export interface Ping {
-  message: string,
-  id?: number,
-  address?: Address
-}
+export const createPing = createAsyncThunk('ping/createPing', createOne)
+export const getPings = createAsyncThunk('ping/getPings', getAll)
+export const deletePing = createAsyncThunk('ping/deletePing', deleteOne)
 
-const parsePing = (obj: unknown): Ping => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const isPing = (obj: any): obj is Ping => 'message' in obj
-  if (!isPing(obj)) throw new Error('Invalid ping format')
-  return obj
-}
-
-const parsePings = (arr: unknown): Array<Ping> => {
-  if (!Array.isArray(arr)) throw new Error('Invalid list')
-  return arr.map(obj => parsePing(obj))
-}
-
-export const createPing = createAsyncThunk(
-  'ping/createPing',
-  async (ping: Ping) => {
-    try {
-      const resp = await fetch(`${baseApiUrl}/pings`, {
-        method: 'POST',
-        body: JSON.stringify(ping),
-        headers: { 'Content-Type': 'application/json' },
-      })
-      return parsePing(await resp.json())
-    } catch (error) {
-      error instanceof Error && alert(error.message)
-    }
-  }
-)
-
-export const getPings = createAsyncThunk(
-  'ping/getPings',
-  async () => {
-    try {
-      const resp = await fetch(`${baseApiUrl}/pings`)
-      return parsePings(await resp.json())
-    } catch (error) {
-      error instanceof Error && alert(error.message)
-    }
-  }
-)
-
-export const deletePing = createAsyncThunk(
-  'ping/deletePing',
-  async (ping: Ping) => {
-    try {
-      await fetch(`${baseApiUrl}/pings/${ping.id}`, {
-        method: 'DELETE',
-      })
-      return ping
-    } catch (error) {
-      error instanceof Error && alert(error.message)
-    }
-  }
-)
-
-
-export interface PingState {
+interface PingState {
   ping: Ping | undefined,
   pings: Array<Ping> | undefined,
   status: 'idle' | 'loading' | 'failed'
