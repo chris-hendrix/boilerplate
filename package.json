@@ -14,7 +14,7 @@
     "lint": "eslint --ext .ts,.tsx .",
     "up": "docker-compose -f docker-compose.yml up -d",
     "down": "docker-compose -f docker-compose.yml down",
-    "up:test": "docker-compose -f docker-compose-test.yml up -d",
+    "up:test": "NODE_ENV=test docker-compose -f docker-compose-test.yml up -d",
     "down:test": "docker-compose -f docker-compose-test.yml down",
     "test": "NODE_ENV=test jest --verbose --runInBand --forceExit",
     "testloc": "NODE_ENV=test npm run up:test && npm run test",

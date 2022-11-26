@@ -12,6 +12,7 @@ It allows the user to "create" pings (with a message attached), that will displa
 
 ### Technologies
 A non-exhaustive list of technologies in this project:
+- [Cypress](https://www.cypress.io/)
 - [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 - [Express](https://expressjs.com/)
 - [Github Actions](https://github.com/features/actions)
