@@ -55,10 +55,13 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Run tests
+      - name: Run server unit tests
         run: npm run test
         env:
           NODE_ENV: test
           DB_HOST: postgres
           TEST_PORT: 3001
           TEST_DB_PORT: 5432
+
+      - name: Run client unit tests
+        run: npm run test:client

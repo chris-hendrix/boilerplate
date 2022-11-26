@@ -20,7 +20,8 @@
     "testloc": "NODE_ENV=test npm run up:test && npm run test",
     "migrate": "ts-node src/util/migrate.ts",
     "rollback": "ts-node src/util/rollback.ts",
-    "pipeline": "act -j pipeline"
+    "pipeline": "act -j pipeline",
+    "test:client": "npm run test:ci ./client --prefix ./client"
   },
   "repository": {
     "type": "git",

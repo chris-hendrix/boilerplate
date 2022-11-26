@@ -5,6 +5,7 @@ const jestConfig = {
     '^.+\\.ts?$': 'ts-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  modulePathIgnorePatterns: ["<rootDir>/client/"]
 };
 
 export default jestConfig
