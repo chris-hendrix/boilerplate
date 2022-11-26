@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { renderWithContext, screen, userEvent } from 'utils/test'
+import { expect, renderWithContext, screen, userEvent } from 'utils/test'
 import Counter from './Counter'
 
 

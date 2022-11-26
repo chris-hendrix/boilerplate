@@ -1,8 +1,12 @@
 module.exports = {
     'extends': [
         '../.eslintrc',
-        'plugin:react/recommended'
+        'plugin:react/recommended',
+        'plugin:cypress/recommended'
     ],
+    'env': {
+        'cypress/globals': true
+    },
     'root': true,
     'parser': '@typescript-eslint/parser',
     'parserOptions': {
