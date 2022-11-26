@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import counterReducer from './counter'
+import pingReducer from './ping'
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     counter: counterReducer,
+    ping: pingReducer
   },
 })
 
@@ -15,3 +17,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >
+
+export default store

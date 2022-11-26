@@ -35,5 +35,7 @@ npm run install:all
 ### Start
 The following command will containerize, build, and start the database, backend, and frontend
 ```
-npm run up && npm start
+npm run up
+npm run migrate
+npm start
 ```

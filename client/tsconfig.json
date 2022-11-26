@@ -8,10 +8,12 @@
     ],
     "baseUrl": "./src",
     "paths": {
+      "@api/*": ["api/*"],
       "@components": ["components"],
       "@hooks": ["hooks"],
       "@store/*": ["store/*"],
       "@theme": ["theme"],
+      "@types": ["types"],
     },
     "allowJs": true,
     "skipLibCheck": true,

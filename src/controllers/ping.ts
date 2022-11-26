@@ -8,15 +8,15 @@ import Address from '../models/address'
 const pingRouter = express.Router()
 
 pingRouter.get('/', (async (_req, res) => {
-  const pings = await Ping.findAll({})
+  const pings = await Ping.findAll({ include: { model: Address } })
   res.status(200).json(pings)
 }) as RequestHandler)
 
 pingRouter.post('/', (async (req, res) => {
-  const pingType: string = parseString(req.body.pingType)
+  const message: string = parseString(req.body.message)
   const remoteAddress = parseString(req.headers['x-forwarded-for'] || req.socket.remoteAddress)
   const [address] = await Address.findOrCreate({ where: { remoteAddress } })
-  const ping = await Ping.create({ pingType, addressId: Number(address.id) })
+  const ping = await Ping.create({ message, addressId: Number(address.id) })
   res.status(201).json(ping)
 }) as RequestHandler)
 

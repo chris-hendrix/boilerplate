@@ -49,7 +49,7 @@ const Counter = ({ ...rest }) => {
           />
         </Box>
       </CardContent>
-      <CardActions >
+      <CardActions sx={{ ...boxSx }} >
         <Button onClick={() => dispatch(incrementByAmount(incrementValue))}>
           Add Amount
         </Button>

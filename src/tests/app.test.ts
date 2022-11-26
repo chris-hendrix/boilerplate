@@ -3,10 +3,10 @@ import request from 'supertest'
 
 import { connectToDatabase, rollbackMigration } from '../db'
 
-const createPing = async (pingType = 'pong', remoteAddress = '::ffff:127.0.0.1') => {
+const createPing = async (message = 'pong', remoteAddress = '::ffff:127.0.0.1') => {
   return (await request(app).post('/api/pings')
     .set({ 'x-forwarded-for': remoteAddress })
-    .send({ pingType }))
+    .send({ message }))
 }
 
 describe('Database', () => {
@@ -30,11 +30,11 @@ describe('Server', () => {
 describe('Pings', () => {
 
   it('Create ping', async () => {
-    const pingType = 'pong'
+    const message = 'pong'
     const remoteAddress = '::ffff:127.0.0.1'
-    const postPingRes = await createPing(pingType, remoteAddress)
+    const postPingRes = await createPing(message, remoteAddress)
     expect(postPingRes.statusCode).toEqual(201)
-    expect(postPingRes.body.pingType).toEqual('pong')
+    expect(postPingRes.body.message).toEqual('pong')
 
     const getAddressRes = await request(app).get(`/api/addresses/${postPingRes.body.addressId}`)
     expect(getAddressRes.body.remoteAddress).toEqual(remoteAddress)

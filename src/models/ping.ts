@@ -18,7 +18,7 @@ import Address from './address'
 class Ping extends Model {
 
   @Column
-  public pingType: string
+  public message: string
 
   @ForeignKey(() => Address)
   @Column

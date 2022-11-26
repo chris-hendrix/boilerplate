@@ -6,8 +6,8 @@ module.exports = {
     // create pings table
     await queryInterface.createTable('pings', {
       id,
-      pingType: {
-        field: 'ping_type',
+      message: {
+        field: 'message',
         type: DataTypes.TEXT,
         allowNull: true
       },
