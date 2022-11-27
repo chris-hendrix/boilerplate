@@ -4,17 +4,17 @@ services:
     container_name: client
     image: ping-client
     build:
-      context: ./client/
-      dockerfile: Dockerfile
-    depends_on:
-      - server
+      context: ./
+      dockerfile: ./client/Dockerfile
     volumes:
-      - ./client/:/usr/src/app/client
+      - ./client:/usr/src/app/client
       - ./client/node_modules:/usr/app/client/node_modules
       - ./client/tsconfig.json:/usr/app/client/tsconfig.json
+      - ./client/.eslintrc:/usr/app/client/.eslintrc
+      - ./tsconfig.json:/usr/app/tsconfig.json
       - ./.eslintrc:/usr/app/.eslintrc
+
     ports:
       - 3000:3000
     environment:
       - WATCHPACK_POLLING=true
-      - SKIP_PREFLIGHT_CHECK=true
