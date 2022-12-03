@@ -35,6 +35,6 @@ export const db: PostgresDb = {
   enableSsl: DB_ENABLE_SSL
 }
 
-export const dbInfo = `nodeEnv=${nodeEnv}, dbPort=${db.port}, dbHost=${db.host}`
+export const dbInfo = `nodeEnv=${nodeEnv}, port=${port} dbPort=${db.port}, dbHost=${db.host}`
 export const serverInfo = `nodeEnv=${nodeEnv}, port=${port}`
 

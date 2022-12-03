@@ -37,7 +37,9 @@
     "test": "NODE_ENV=test react-scripts test",
     "eject": "react-scripts eject",
     "test:ci": "CI=true npm test",
-    "cypress:open": "NODE_ENV=test cypress open"
+    "start:test": "REACT_APP_NODE_ENV=test react-scripts start",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run"
   },
   "eslintConfig": {
     "extends": [

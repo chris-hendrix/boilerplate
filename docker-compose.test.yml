@@ -1,8 +1,8 @@
 version: '3.8'
 services:
-  db-test:
-    container_name: db-test
-    image: postgres:latest
+  postgres-test:
+    container_name: postgres-test
+    image: postgres:14.1-alpine
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -11,27 +11,28 @@ services:
     ports:
       - '5433:5432'
     volumes: 
-      - ./db-test:/var/lib/postgresql/data
+      - postgres-test:/var/lib/postgresql/data
   server-test:
-    container_name: server-test
-    image: ping-server-test
+    container_name: boilerplate-server-test
+    image: boilerplate-server-test
     build:
       context: ./
       dockerfile: Dockerfile
     depends_on:
-      - db-test
+      - postgres-test
     ports:
       - 3010:3001
     environment:
       NODE_ENV: test
-      DB_HOST: db-test
-      PORT: 3001
+      DB_HOST: postgres-test
+      TEST_PORT: 3001 # 3010
+      TEST_DB_PORT: 5432 # 5433
     links:
-      - db-test
+      - postgres-test
     volumes:
       - ./src:/usr/app/src
       - ./node_modules:/usr/app/node_modules
       - ./tsconfig.json:/usr/app/tsconfig.json
 volumes:
-  db:
+  postgres-test:
     driver: local

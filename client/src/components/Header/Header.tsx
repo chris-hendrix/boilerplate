@@ -8,7 +8,7 @@ const Header = ({ ...rest }) => {
         typography="h3"
         sx={{ display: 'flex', justifyContent: 'center' }}
       >
-        Ping Boilerplate
+        Boilerplate
       </Box>
     </Box>
 

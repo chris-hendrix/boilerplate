@@ -15,5 +15,7 @@ module.exports = {
         'ecmaFeatures': { 'jsx': true }
     },
     'plugins': ['react'],
-    'rules': {}
+    'rules': {
+        '@typescript-eslint/unbound-method': 'off'
+    }
 }

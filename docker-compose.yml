@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  db:
-    container_name: db
+  postgres:
+    container_name: postgres
     image: postgres:14.1-alpine
     restart: always
     environment:
@@ -11,27 +11,27 @@ services:
     ports:
       - '5432:5432'
     volumes: 
-      - db:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
   server:
     container_name: server
-    image: ping-server
+    image: boilerplate-server
     build:
       context: ./
       dockerfile: Dockerfile
     depends_on:
-      - db
+      - postgres
     ports:
       - 3001:3001
     environment:
       NODE_ENV: development
-      DB_HOST: db
+      DB_HOST: postgres
       PORT: 3001
     links:
-      - db
+      - postgres
     volumes:
       - ./src:/usr/app/src
       - ./node_modules:/usr/app/node_modules
       - ./tsconfig.json:/usr/app/tsconfig.json
 volumes:
-  db:
+  postgres:
     driver: local

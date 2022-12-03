@@ -1,4 +1,4 @@
-# Ping Boilerplate
+# Boilerplate
 
 ### Description
 A boilerplate web project using the NodeJS framework and Typescript. It consists of the following
