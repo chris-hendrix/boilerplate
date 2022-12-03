@@ -67,4 +67,7 @@ jobs:
         run: npm run test:client
 
       - name: Start app
-      - run: npm run
+        run: npm start
+
+      - name: Run e2e tests
+        run: npm run test:e2e
