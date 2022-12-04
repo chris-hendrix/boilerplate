@@ -9,6 +9,7 @@
 /coverage
 /cypress/videos
 /cypress/downloads
+/cypress/screenshots
 
 # production
 /build

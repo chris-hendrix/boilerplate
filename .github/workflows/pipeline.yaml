@@ -66,8 +66,11 @@ jobs:
       - name: Run client unit tests
         run: npm run test:client
 
-      - name: Start app
-        run: npm start
+      - name: Build client
+        run: npm run build
 
-      - name: Run e2e tests
+      - name: Start app
+        run: npm run server
+
+      - name: Run E2E tests
         run: npm run test:e2e

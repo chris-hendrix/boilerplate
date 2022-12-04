@@ -1,18 +1,15 @@
 const PORT = process.env.PORT || '3000'
-const REACT_APP_NODE_ENV = process.env.REACT_APP_NODE_ENV || 'dev'
-const REACT_APP_BASE_API_URL = process.env.REACT_APP_BASE_API_URL || 'http://localhost:3001/api'
-const REACT_APP_TEST_BASE_API_URL = process.env.REACT_APP_TEST_BASE_API_URL || 'http://localhost:3010/api'
+const NODE_ENV = process.env.NODE_ENV || 'dev'
+const REACT_APP_SERVER_PORT = process.env.REACT_APP_SERVER_PORT || '3001'
 
+export const appNodeEnv = NODE_ENV
+export const appPort = appNodeEnv === 'production' ? REACT_APP_SERVER_PORT : PORT
+export const appUrl = `http://localhost:${appPort}`
+export const serverPort = REACT_APP_SERVER_PORT
+export const serverApiUrl = `http://localhost:${serverPort}/api`
 
-export const baseApiUrl = REACT_APP_NODE_ENV === 'test'
-  ? REACT_APP_TEST_BASE_API_URL
-  : REACT_APP_BASE_API_URL
-export const nodeEnv = REACT_APP_NODE_ENV
-export const port = PORT
-export const appUrl = `http://localhost:${port}`
+const config = { serverApiUrl, appNodeEnv, appPort, serverPort, appUrl }
 
-const config = { baseApiUrl, nodeEnv, port, appUrl }
-
-if (nodeEnv !== 'prod') console.log({ config })
+if (appNodeEnv !== 'production') console.log({ config })
 
 export default config

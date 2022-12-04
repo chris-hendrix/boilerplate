@@ -10,8 +10,9 @@
     "start:test": "npm run start:test ./client --prefix ./client",
     "tsc": "tsc",
     "dev": "nodemon -L src/index.ts",
-    "server": "ts-node src/index.ts",
-    "dev:test": "NODE_ENV=test && nodemon -L src/index.ts",
+    "server": "NODE_ENV=production ts-node src/index.ts",
+    "dev:test": "NODE_ENV=test nodemon -L src/index.ts",
+    "dev:static": "NODE_ENV=production nodemon -L src/index.ts",
     "lint": "eslint --ext .ts,.tsx .",
     "up": "docker-compose -f docker-compose.yml up -d",
     "down": "docker-compose -f docker-compose.yml down",
@@ -25,7 +26,9 @@
     "rollback": "ts-node src/util/rollback.ts",
     "pipeline": "act -j pipeline",
     "test:client": "npm run test:ci ./client --prefix ./client",
-    "test:e2e": "npm run test:e2e ./client --prefix ./client"
+    "test:e2e": "npm run test:e2e ./client --prefix ./client",
+    "build:client": "./client --prefix ./client",
+    "build": "npm run build ./client --prefix"
   },
   "repository": {
     "type": "git",

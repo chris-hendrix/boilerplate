@@ -1,4 +1,4 @@
-import { baseApiUrl } from 'config'
+import { serverApiUrl } from 'config'
 import { Ping } from 'types/ping'
 
 const parsePing = (obj: unknown): Ping => {
@@ -15,7 +15,7 @@ const parsePings = (arr: unknown): Array<Ping> => {
 
 export const getAll = async () => {
   try {
-    const resp = await fetch(`${baseApiUrl}/pings`)
+    const resp = await fetch(`${serverApiUrl}/pings`)
     return parsePings(await resp.json())
   } catch (error) {
     error instanceof Error && alert(error.message)
@@ -25,7 +25,7 @@ export const getAll = async () => {
 
 export const createOne = async (ping: Ping) => {
   try {
-    const resp = await fetch(`${baseApiUrl}/pings`, {
+    const resp = await fetch(`${serverApiUrl}/pings`, {
       method: 'POST',
       body: JSON.stringify(ping),
       headers: { 'Content-Type': 'application/json' },
@@ -38,7 +38,7 @@ export const createOne = async (ping: Ping) => {
 
 export const deleteOne = async (ping: Ping) => {
   try {
-    await fetch(`${baseApiUrl}/pings/${ping.id}`, {
+    await fetch(`${serverApiUrl}/pings/${ping.id}`, {
       method: 'DELETE',
     })
     return ping
