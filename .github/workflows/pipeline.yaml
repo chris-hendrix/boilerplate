@@ -20,6 +20,7 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     container: node:latest
+    options: --user root
     services:
       postgres:
         image: postgres:latest
@@ -47,7 +48,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 17
 
       - name: Install dependencies
         run: npm install && cd client && npm install
@@ -69,7 +70,7 @@ jobs:
       - name: Build client
         run: npm run build
 
-      - name: Start app
+      - name: Run 
         run: npm run server
 
       - name: Run E2E tests
