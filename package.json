@@ -28,7 +28,7 @@
     "test:client": "npm run test:ci ./client --prefix ./client",
     "test:e2e": "npm run test:e2e ./client --prefix ./client",
     "build:client": "./client --prefix ./client",
-    "build": "npm run build ./client --prefix  ./client"
+    "build": "sudo npm run build ./client --prefix  ./client"
   },
   "repository": {
     "type": "git",
