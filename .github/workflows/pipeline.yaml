@@ -20,7 +20,6 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     container: node:latest
-    options: --user root
     services:
       postgres:
         image: postgres:latest
