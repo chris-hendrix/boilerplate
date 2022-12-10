@@ -19,7 +19,7 @@ env:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    container: node:latest
+    # container: node:latest
     services:
       postgres:
         image: postgres:latest
@@ -40,6 +40,8 @@ jobs:
         run: |
           apt-get update
           apt-get install --yes postgresql-client
+
+      - run: apt-get install xvfb
   
       - name: Check out code
         uses: actions/checkout@v3
@@ -67,11 +69,13 @@ jobs:
       #   run: npm run test:client
 
       - name: e2e tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           command: cd client && npm run test:e2e
           build: cd client && npm run build
           start: npm run server
           wait-on: http://localhost:3001
-          # env:
-          #   CYPRESS_BASE_URL: 'http://localhost:3001'
+          browser: chrome
+          headless: true
+        env:
+          CYPRESS_BASE_URL: http://localhost:3001
