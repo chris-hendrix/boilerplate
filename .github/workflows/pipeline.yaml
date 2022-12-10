@@ -36,12 +36,15 @@ jobs:
           --health-retries 5
     steps:
 
-      - name: Install PostgreSQL client
-        run: |
-          apt-get update
-          apt-get install --yes postgresql-client
+      - run: apt-get update
 
-      - run: apt-get install xvfb
+      - name: Install PostgreSQL client
+        run: apt-get install --yes postgresql-client
+
+      - name: Install cypress dependencies
+        run: | 
+          apt-get install --yes libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 
+          apt-get install --yes libnss3 libxss1 libasound2 libxtst6 xauth xvfb
   
       - name: Check out code
         uses: actions/checkout@v3
@@ -71,8 +74,8 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
-          command: cd client && npm run test:e2e
-          build: cd client && npm run build
+          command: npm run test:e2e
+          build: npm run build
           start: npm run server
           wait-on: http://localhost:3001
           browser: chrome
