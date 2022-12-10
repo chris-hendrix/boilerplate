@@ -47,30 +47,31 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 17
+          node-version: 18
 
       - name: Install dependencies
         run: npm install && cd client && npm install
 
-      - name: Lint
-        run: npm run lint
+      # - name: Lint
+      #   run: npm run lint
 
-      - name: Run server unit tests
-        run: npm run test
-        env:
-          NODE_ENV: test
-          DB_HOST: postgres
-          TEST_PORT: 3001
-          TEST_DB_PORT: 5432
+      # - name: Run server unit tests
+      #   run: npm run test
+      #   env:
+      #     NODE_ENV: test
+      #     DB_HOST: postgres
+      #     TEST_PORT: 3001
+      #     TEST_DB_PORT: 5432
 
-      - name: Run client unit tests
-        run: npm run test:client
+      # - name: Run client unit tests
+      #   run: npm run test:client
 
-      - name: Build client
-        run: cd client && npm run build
-
-      - name: Run 
-        run: npm run server
-
-      - name: Run E2E tests
-        run: npm run test:e2e
+      - name: e2e tests
+        uses: cypress-io/github-action@v4
+        with:
+          command: cd client && npm run test:e2e
+          build: cd client && npm run build
+          start: npm run server
+          wait-on: http://localhost:3001
+          # env:
+          #   CYPRESS_BASE_URL: 'http://localhost:3001'
