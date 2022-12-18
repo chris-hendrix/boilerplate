@@ -38,12 +38,6 @@ jobs:
           --health-retries 5
     steps:
 
-      - run: apt update && apt install sudo
-      - run: sudo apt-get update
-
-      - name: Install PostgreSQL client
-        run: apt-get install --yes postgresql-client
-  
       - name: Check out code
         uses: actions/checkout@v3
 

@@ -38,8 +38,8 @@ jobs:
 
       - run: apt-get update
 
-      - name: Install PostgreSQL client
-        run: apt-get install --yes postgresql-client
+      # - name: Install PostgreSQL client
+      #   run: apt-get install --yes postgresql-client
   
       - name: Check out code
         uses: actions/checkout@v3
