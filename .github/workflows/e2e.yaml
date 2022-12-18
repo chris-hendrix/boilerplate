@@ -17,9 +17,11 @@ env:
   TEST_DB_PORT: ${{ secrets.TEST_DB_PORT }}
 
 jobs:
-  pipeline:
+  e2e:
     runs-on: ubuntu-latest
-    container: node:latest
+    container: 
+      image: cypress/browsers:node18.12.0-chrome107
+      options: --user 1001
     services:
       postgres:
         image: postgres:latest
@@ -52,16 +54,15 @@ jobs:
       - name: Install dependencies
         run: npm install && cd client && npm install
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Run server unit tests
-        run: npm run test
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: client
+          command: npm run test:e2e
+          build: npm run build
+          start: npm run server
+          wait-on: http://localhost:3001
+          browser: chrome
+          headless: true
         env:
-          NODE_ENV: test
-          DB_HOST: postgres
-          TEST_PORT: 3001
-          TEST_DB_PORT: 5432
-
-      - name: Run client unit tests
-        run: npm run test:client
+          CYPRESS_BASE_URL: http://localhost:3001
