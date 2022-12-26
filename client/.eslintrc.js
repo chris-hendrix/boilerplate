@@ -3,9 +3,6 @@ module.exports = {
         '../.eslintrc',
         'plugin:react/recommended'
     ],
-    'env': {
-        'cypress/globals': true
-    },
     'root': true,
     'parser': '@typescript-eslint/parser',
     'parserOptions': {
