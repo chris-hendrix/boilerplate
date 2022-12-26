@@ -44,12 +44,6 @@ jobs:
       - name: Install dependencies
         run: npm install && cd client && npm install
 
-      # - name: Build static app
-      #   run: npm run build
-
-      # - name: Start server
-      #   run: npm run server
-
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:

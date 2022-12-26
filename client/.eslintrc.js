@@ -1,8 +1,7 @@
 module.exports = {
     'extends': [
         '../.eslintrc',
-        'plugin:react/recommended',
-        'plugin:cypress/recommended'
+        'plugin:react/recommended'
     ],
     'env': {
         'cypress/globals': true
