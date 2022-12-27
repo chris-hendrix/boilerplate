@@ -44,10 +44,11 @@ jobs:
       - name: Install dependencies
         run: npm install && cd client && npm install
 
-      - name: e2e tests
+      - name: Setup and run e2e tests
         uses: cypress-io/github-action@v5
         with:
           working-directory: client
+          install: false
           command: npm run test:e2e
           build: npm run build
           start: npm run server
