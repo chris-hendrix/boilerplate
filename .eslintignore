@@ -2,3 +2,4 @@
 jest.config.ts
 cypress.config.ts
 *.eslintrc.js
+*.test.tsx
