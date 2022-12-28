@@ -25,8 +25,8 @@ services:
     environment:
       NODE_ENV: test
       DB_HOST: postgres-test
-      TEST_PORT: 3001 # 3010
-      TEST_DB_PORT: 5432 # 5433
+      TEST_PORT: 3001
+      TEST_DB_PORT: 5432
     links:
       - postgres-test
     volumes:

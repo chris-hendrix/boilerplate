@@ -38,10 +38,9 @@
     "eject": "react-scripts eject",
     "test:ci": "CI=true npm test",
     "start:test": "REACT_APP_NODE_ENV=test react-scripts start",
-    "cypress:open": "cypress open",
+    "cy:open": "cypress open",
     "test:e2e": "CYPRESS_BASE_URL=http://localhost:3001 cypress run --headless",
     "test:e2e:local": "CYPRESS_BASE_URL=http://localhost:3000 cypress run",
-    "cy:version": "cypress version",
     "server": "npm run server ../ --prefix ../"
   },
   "eslintConfig": {
