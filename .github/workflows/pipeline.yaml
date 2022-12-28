@@ -54,4 +54,4 @@ jobs:
           TEST_DB_PORT: 5432
 
       - name: Run client unit tests
-        run: npm run test:client
+        run: cd client && npm run test
