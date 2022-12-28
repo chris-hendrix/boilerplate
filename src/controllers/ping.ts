@@ -1,6 +1,6 @@
 import express from 'express'
 import { RequestHandler } from 'express'
-import { parseString } from '../util/parser'
+import { parseString } from '../utils/parser'
 
 import Ping from '../models/ping'
 import Address from '../models/address'

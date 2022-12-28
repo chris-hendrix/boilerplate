@@ -1,7 +1,7 @@
 import { db, dbInfo } from './config'
 import { Sequelize } from 'sequelize-typescript'
 import { Umzug, SequelizeStorage } from 'umzug'
-import logger from './util/logger'
+import logger from './utils/logger'
 
 const { database, username, password, host, port, dialect, enableSsl } = db
 export const sequelize = new Sequelize(database, username, password, {

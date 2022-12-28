@@ -20,10 +20,15 @@ import {
   selectCount,
 } from 'store/counter'
 
-const Counter = ({ ...rest }) => {
+interface Props {
+  initialIncrement?: number
+  [x: string]: unknown
+}
+
+const Counter = ({ initialIncrement = 2, ...rest }: Props) => {
   const count = useAppSelector(selectCount)
   const dispatch = useAppDispatch()
-  const [incrementAmount, setIncrementAmount] = useState('2')
+  const [incrementAmount, setIncrementAmount] = useState(String(initialIncrement))
 
   const incrementValue = Number(incrementAmount) || 0
 
@@ -34,7 +39,7 @@ const Counter = ({ ...rest }) => {
       <CardContent>
         <Box sx={{ ...boxSx, mb: 2 }}>
           <IconButton onClick={() => dispatch(decrement())}>-</IconButton>
-          <Box typography="h2">{count}</Box>
+          <Box className='countBox' typography="h2">{count}</Box>
           <IconButton onClick={() => dispatch(increment())}>+</IconButton>
         </Box>
         <Box sx={{ ...boxSx }}>

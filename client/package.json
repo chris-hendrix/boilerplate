@@ -8,9 +8,6 @@
     "@mui/icons-material": "^5.10.15",
     "@mui/material": "^5.10.15",
     "@reduxjs/toolkit": "^1.9.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^27.5.2",
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.25",
@@ -23,17 +20,28 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
+    "cypress": "^12.2.0",
     "eslint": "^8.26.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-react": "^7.31.10",
     "redux-devtools-extension": "^2.13.9"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "NODE_ENV=test react-scripts test",
+    "eject": "react-scripts eject",
+    "test:ci": "CI=true npm test",
+    "start:test": "REACT_APP_NODE_ENV=test react-scripts start",
+    "cy:open": "cypress open",
+    "test:e2e": "CYPRESS_BASE_URL=http://localhost:3001 cypress run --headless",
+    "test:e2e:local": "CYPRESS_BASE_URL=http://localhost:3000 cypress run",
+    "server": "npm run server ../ --prefix ../"
   },
   "eslintConfig": {
     "extends": [
