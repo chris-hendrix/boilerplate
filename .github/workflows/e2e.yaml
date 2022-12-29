@@ -5,13 +5,6 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  CYPRESS_BASE_URL: http://localhost:3001
-  NODE_ENV: production
-  DB_HOST: postgres
-  TEST_PORT: 3001
-  TEST_DB_PORT: 5432
-
 jobs:
   e2e:
     runs-on: ubuntu-latest
@@ -51,3 +44,9 @@ jobs:
           wait-on: http://localhost:3001
           browser: chrome
           headless: true
+        env:
+          NODE_ENV: production
+          DB_HOST: postgres
+          TEST_PORT: 3001
+          TEST_DB_PORT: 5432
+          CYPRESS_BASE_URL: http://localhost:3001
