@@ -2,19 +2,15 @@ name: E2E
 
 on:
   push:
-    branches:
-      - main
-      - '**'
-    pull_request:
-      branches: [main]
-      types: [opened, synchronize]
+  pull_request:
+    branches: [main]
 
 env:
-  PORT: ${{ secrets.PORT }}
-  DB_PORT: ${{ secrets.DB_PORT }}
-  DB_HOST: ${{ secrets.DB_HOST }}
-  TEST_PORT: ${{ secrets.TEST_PORT }}
-  TEST_DB_PORT: ${{ secrets.TEST_DB_PORT }}
+  CYPRESS_BASE_URL: http://localhost:3001
+  NODE_ENV: production
+  DB_HOST: postgres
+  TEST_PORT: 3001
+  TEST_DB_PORT: 5432
 
 jobs:
   e2e:
@@ -55,9 +51,3 @@ jobs:
           wait-on: http://localhost:3001
           browser: chrome
           headless: true
-        env:
-          CYPRESS_BASE_URL: http://localhost:3001
-          NODE_ENV: production
-          DB_HOST: postgres
-          TEST_PORT: 3001
-          TEST_DB_PORT: 5432
