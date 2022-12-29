@@ -13,7 +13,7 @@ env:
 
 jobs:
 
-  unit_tests:
+  unit-tests:
     runs-on: ubuntu-latest
     container: node:latest
     services:
@@ -42,7 +42,7 @@ jobs:
       - name: Run client unit tests
         run: cd client && npm run test
 
-  e2e:
+  e2e-tests:
     runs-on: ubuntu-latest
     container: cypress/browsers:node18.12.0-chrome107
     services:
@@ -74,7 +74,6 @@ jobs:
           start: npm run server
           wait-on: http://localhost:3001
           browser: chrome
-          headless: true
         env:
           NODE_ENV: production
           DB_HOST: postgres
@@ -83,7 +82,7 @@ jobs:
           CYPRESS_BASE_URL: http://localhost:3001
 
   tag:
-    needs: [unit_tests, e2e]
+    needs: [unit-tests, e2e-tests]
     runs-on: ubuntu-latest
     steps:
       - name: Todo
