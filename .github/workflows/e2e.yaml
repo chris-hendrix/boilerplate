@@ -26,13 +26,10 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-
       - name: Check out code
         uses: actions/checkout@v3
-
       - name: Install dependencies
         run: npm install && cd client && npm install
-
       - name: Setup and run e2e tests
         uses: cypress-io/github-action@v5
         with:
