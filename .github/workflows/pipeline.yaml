@@ -85,8 +85,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Bump version on merge to main
-        if: ${{ github.base_ref == 'main' }}
-        uses: anothrNick/github-tag-action@1.33.0
+        if: ${{ github.base_ref == 'main' && github.event.pull_request.merged == true }}
+        uses: anothrNick/github-tag-action@1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
