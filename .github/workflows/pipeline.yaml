@@ -79,3 +79,30 @@ jobs:
           TEST_PORT: 3001
           TEST_DB_PORT: 5432
           CYPRESS_BASE_URL: http://localhost:3001
+      # https://github.com/bahmutov/eleventy-example/blob/main/.github/workflows/ci.yml#L27
+      - name: e2e tests success
+        if: ${{ success() }}
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "context": "e2e-tests",
+            "state": "success",
+            "description": "e2e tests passed",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }'
+      - name: e2e tests failure
+        if: ${{ failure() }}
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "context": "e2e-tests",
+            "state": "failure",
+            "description": "e2e tests failed",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }'
