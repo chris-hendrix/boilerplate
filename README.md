@@ -6,9 +6,7 @@ A boilerplate web project using the NodeJS framework and Typescript. It consists
 - backend: Express
 - frontend: React
 
-It allows the user to "create" pings (with a message attached), that will display on the frontend.
-
-**Note that this is a work currently a WIP**
+It allows the user to create messages that will display on the frontend.
 
 ### Technologies
 A non-exhaustive list of technologies in this project:
@@ -37,6 +35,5 @@ npm run install:all
 The following command will containerize, build, and start the database, backend, and frontend
 ```
 npm run up
-npm run migrate
 npm start
 ```
