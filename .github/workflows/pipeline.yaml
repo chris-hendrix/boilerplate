@@ -2,22 +2,12 @@ name: Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - '**'
-    pull_request:
-      branches: [main]
-      types: [opened, synchronize]
-
-env:
-  PORT: ${{ secrets.PORT }}
-  DB_PORT: ${{ secrets.DB_PORT }}
-  DB_HOST: ${{ secrets.DB_HOST }}
-  TEST_PORT: ${{ secrets.TEST_PORT }}
-  TEST_DB_PORT: ${{ secrets.TEST_DB_PORT }}
+  pull_request:
+    branches: [main]
 
 jobs:
-  pipeline:
+
+  unit-tests:
     runs-on: ubuntu-latest
     container: node:latest
     services:
@@ -34,24 +24,75 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+    env:
+      NODE_ENV: test
+      DB_HOST: postgres
+      TEST_PORT: 3001
+      TEST_DB_PORT: 5432
     steps:
-  
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Install dependencies
         run: npm install && cd client && npm install
-
       - name: Lint
         run: npm run lint
-
       - name: Run server unit tests
         run: npm run test
+      - name: Run client unit tests
+        run: cd client && npm run test
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node18.12.0-chrome107
+    services:
+      postgres:
+        image: postgres:latest
         env:
-          NODE_ENV: test
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install && cd client && npm install
+      - name: Setup and run e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: client
+          install: false
+          command: npm run test:e2e
+          build: npm run build
+          start: npm run server
+          wait-on: http://localhost:3001
+          browser: chrome
+        env:
+          NODE_ENV: production
           DB_HOST: postgres
           TEST_PORT: 3001
           TEST_DB_PORT: 5432
+          CYPRESS_BASE_URL: http://localhost:3001
 
-      - name: Run client unit tests
-        run: cd client && npm run test
+  tag:
+    needs: [unit-tests, e2e-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Bump version
+        if: ${{ github.event_name == 'push' }}
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          RELEASE_BRANCHES: main
+          PRERELEASE: true
