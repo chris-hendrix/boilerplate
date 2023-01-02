@@ -16,7 +16,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: anothrNick/github-tag-action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.YOUR_PAT }}
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: main
           PRERELEASE: true
